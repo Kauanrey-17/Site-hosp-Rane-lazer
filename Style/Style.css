@@ -1,10 +1,10 @@
 /* Variáveis de Cores (Baseadas na sua logo) */
 :root {
-    --color-primary: #5bc0de; /* Azul claro da água */
-    --color-secondary: #f0ad4e; /* Laranja/Dourado do LAZER/Coroa */
-    --color-dark: #2c3e50; /* Azul escuro do slogan/textos principais */
+    --color-primary: #000000; /* Azul claro da água */
+    --color-secondary: #ffffff; /* Laranja/Dourado do LAZER/Coroa */
+    --color-dark: #3a71b5; /* Azul escuro do slogan/textos principais */
     --color-light: #ecf0f1; /* Cinza claro para fundos secundários */
-    --color-white: #81ddef;
+    --color-white: #76cffb;
     --color-text-dark: #333;
     --color-text-light: #eee;
     --font-primary: 'Montserrat', sans-serif;
@@ -34,7 +34,7 @@ body {
 }
 
 /* Tipografia */
-h1, h2, h3 {
+h1, h3 {
     font-family: var(--font-primary);
     color: var(--color-dark);
     margin-bottom: 1rem;
@@ -46,6 +46,7 @@ h2 {
     margin-bottom: 2rem;
     position: relative;
     padding-bottom: 10px;
+    color: var(--color-primary);
 }
 
 h2::after {
@@ -200,7 +201,7 @@ a {
 .hero-section h2 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    color: var(--color-white);
+    color: var(--color-primary);
     position: relative;
     padding-bottom: 0; /* Remove o underline padrão */
 }
@@ -212,6 +213,7 @@ a {
 .hero-section p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: var(--color-primary);
 }
 
 /* Seções Gerais */
@@ -383,12 +385,131 @@ section:nth-of-type(odd) {
     margin-top: 1.5rem;
 }
 
+/* ... restante do código anterior ... */
+
 .optional-services ul li {
-    background: var(--color-white);
+    background: var(--color-secondary); /* Ajustei para usar branco/secundária */
     padding: 12px 20px;
     border-radius: 25px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     font-weight: 500;
-    color: #555;
-    transition: background 0;
+    color: var(--color-text-dark); /* Cor do texto legível */
+    transition: background 0.3s;
+}
+/* Faltava essa chave abaixo */
+/* --- ADICIONE ISSO AO FINAL DO SEU CSS --- */
+
+/* Classe utilitária para esconder elementos (usada pelo JavaScript nas abas) */
+.hidden {
+    display: none;
+}
+
+/* Estilo do Botão da Categoria Ativo (Laranja) */
+.menu-category-btn {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-secondary);
+    color: var(--color-text-dark);
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.menu-category-btn.active, .menu-category-btn:hover {
+    color: var(--color-primary); /* Laranja/Dourado */
+    border-bottom-color: var(--color-primary);
+}
+/* --- CARROSSEL NOVO --- */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    background: black;
+}
+
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
+}
+
+/* Setas */
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 35px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 50%;
+    z-index: 100;
+    transition: 0.3s;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+
+/* Responsividade do Menu Mobile */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Mostra o botão no celular */
+    }
+
+    .main-nav .nav-list {
+        display: none; /* Esconde o menu por padrão no celular */
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Classe que o JS adiciona para mostrar o menu */
+    .main-nav .nav-list.active {
+        display: flex;
+    }
+    
+    .main-nav .nav-list li {
+        margin: 15px 0;
+    }
 }
